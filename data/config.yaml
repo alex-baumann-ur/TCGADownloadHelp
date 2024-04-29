@@ -1,0 +1,16 @@
+# TCGA data
+tcga_user_token_file: False # include secured file path with TCGA user token. If none is available, put in: False
+# Analysis path
+# an_path: /media/md0/abaumann/01_OLCIR/genomic_instab_test_lusc/ # real path
+an_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/ # for testing purposes
+# Sample sheet name
+# sample_sheet: sample_sheets/2024-04-08_sample_sheet_lusc_paths.tsv # real path
+sample_sheet: sample_sheets/test_sample1_sample_sheet.tsv # for testing purposes
+# Methods with separate subfolders
+# methods: ['BRASS','CaVEMan','CNV_segment','Pindel','Splicing','STAR_counts'] # real methods
+methods: ['BRASS']
+
+
+
+
+

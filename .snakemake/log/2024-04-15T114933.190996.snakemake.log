@@ -1,0 +1,4 @@
+FileExistsError in file /home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile, line 19:
+[Errno 17] File exists: '/home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS'
+  File "/home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile", line 19, in <module>
+  File "<frozen os>", line 225, in makedirs

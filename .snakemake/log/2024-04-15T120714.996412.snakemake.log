@@ -1,0 +1,42 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cores: 6
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+BRASS        1
+all          1
+total        2
+
+Select jobs to execute...
+
+[Mon Apr 15 12:07:16 2024]
+rule BRASS:
+    input: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.raw_structural_variation.vcf.gz, /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.rerun_structural_variation.bedpe.gz
+    output: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    jobid: 1
+    reason: Missing output files: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    wildcards: sample=sample1
+    threads: 2
+    resources: tmpdir=/tmp
+
+Activating conda environment: ../../98_snakemake_tmp/4a33bccd02835ad769bd6d54a9a762ec_
+Environment defines Python version < 3.7. Using Python of the main process to execute script. Note that this cannot be avoided, because the script uses data structures from Snakemake which are Python >=3.7 only.
+Activating conda environment: ../../98_snakemake_tmp/4a33bccd02835ad769bd6d54a9a762ec_
+[Mon Apr 15 12:07:16 2024]
+Error in rule BRASS:
+    jobid: 1
+    input: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.raw_structural_variation.vcf.gz, /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.rerun_structural_variation.bedpe.gz
+    output: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    conda-env: /home/alex/Dokumente/98_snakemake_tmp/4a33bccd02835ad769bd6d54a9a762ec_
+
+RuleException:
+CalledProcessError in file /home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile, line 37:
+Command 'source /home/alex/miniconda3/envs/Snakemake/bin/activate '/home/alex/Dokumente/98_snakemake_tmp/4a33bccd02835ad769bd6d54a9a762ec_'; set -euo pipefail;  /home/alex/miniconda3/envs/Snakemake/bin/python3.12 /home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/.snakemake/scripts/tmpswb07hbs.BRASS_analysis.py' returned non-zero exit status 1.
+  File "/home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile", line 37, in __rule_BRASS
+  File "/home/alex/miniconda3/envs/Snakemake/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-04-15T120714.996412.snakemake.log

@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 6
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+BRASS        1
+all          1
+total        2
+
+Select jobs to execute...
+
+[Mon Apr 15 11:50:07 2024]
+rule BRASS:
+    input: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.raw_structural_variation.vcf.gz, /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.rerun_structural_variation.bedpe.gz
+    output: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    jobid: 1
+    reason: Missing output files: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    wildcards: sample=sample1
+    threads: 2
+    resources: tmpdir=/tmp
+
+Activating conda environment: envs/vcf_env.txt
+[Mon Apr 15 11:50:08 2024]
+Error in rule BRASS:
+    jobid: 1
+    input: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.raw_structural_variation.vcf.gz, /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/01_sample_data/BRASS/sample1.BRASS.rerun_structural_variation.bedpe.gz
+    output: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/02_results_raw/BRASS/sample1_BRASS_out.txt
+    conda-env: envs/vcf_env.txt
+
+RuleException:
+CalledProcessError in file /home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile, line 37:
+Command 'source /home/alex/miniconda3/envs/Snakemake/bin/activate 'envs/vcf_env.txt'; set -euo pipefail;  /home/alex/miniconda3/envs/Snakemake/bin/python3.12 /home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/.snakemake/scripts/tmp9uh2y3d4.BRASS_analysis.py' returned non-zero exit status 1.
+  File "/home/alex/Dokumente/02_OLCIR/05_genomic_instab_lusc/Snakefile", line 37, in __rule_BRASS
+  File "/home/alex/miniconda3/envs/Snakemake/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-04-15T115007.313677.snakemake.log
