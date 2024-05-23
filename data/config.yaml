@@ -1,16 +1,15 @@
-# TCGA data
-tcga_user_token_file: False # include secured file path with TCGA user token. If none is available, put in: False
 # Analysis path
-# an_path: /media/md0/abaumann/01_OLCIR/genomic_instab_test_lusc/ # real path
-an_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/ # for testing purposes
-# Sample sheet name
-# sample_sheet: sample_sheets/2024-04-08_sample_sheet_lusc_paths.tsv # real path
-sample_sheet: sample_sheets/test_sample1_sample_sheet.tsv # for testing purposes
+analysis_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/ # for testing purposes
+# Original (prior) manifest files names in list (in folder sample_sheets/manifests)
+manifests_prior: [2024-04-08_gdc_manifest_splice_lusc_prior.txt, 2024-04-08_gdc_manifest_star_counts_lusc_prior.txt]
+# Original (prior) sample sheets names in list (in folder sample_sheets/prior_sample_sheets)
+sample_sheets_prior: [2024-04-08_gdc_sample_sheet_splice_lusc_prior.tsv, 2024-04-08_gdc_sample_sheet_star_counts_lusc_prior.tsv] # for testing purposes
 # Methods with separate subfolders
-# methods: ['BRASS','CaVEMan','CNV_segment','Pindel','Splicing','STAR_counts'] # real methods
-methods: ['BRASS']
+# methods: [BRASS,CaVEMan,CNV_segment,Pindel,Splicing,STAR_counts] # real methods
+methods: [Splicing, STAR_counts]
+# Sample sheet with case IDs to filter for (in folder sample_sheets)
+sample_sheet_filtering: 
 
-
-
-
+# TCGA user token for restricted access files
+tcga_user_token_file: False # include secured file path with TCGA user token. If none is available, put in: False
 
