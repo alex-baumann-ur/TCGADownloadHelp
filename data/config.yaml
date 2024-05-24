@@ -7,8 +7,8 @@ sample_sheets_prior: [2024-04-08_gdc_sample_sheet_splice_lusc_prior.tsv, 2024-04
 # Methods with separate subfolders
 # methods: [BRASS,CaVEMan,CNV_segment,Pindel,Splicing,STAR_counts] # real methods
 methods: [Splicing, STAR_counts]
-# Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets)
-sample_sheet_filtering: 
+# Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets). If not wanted or needed, put in: False
+sample_sheet_filtering: False
 # First_install: if you want to install the gdc-client as a conda environment. Set to True after first installation. If the installatation should be started again, set to "First_install" again
 # True: if you have installed the conda environment as gdc_client within this script (set to True after first installation)
 # Name for conda environment including the TCGA GDC-Client tool: if you want to use your own environment
