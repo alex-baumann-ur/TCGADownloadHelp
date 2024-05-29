@@ -1,22 +1,27 @@
 # Analysis path
-analysis_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/ # for testing purposes
+# analysis_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/
+analysis_path: /home/alex/Dokumente/02_OLCIR/81_test_pipeline/
+
 # Original (prior) manifest files names in list (in folder <analysis_path>/sample_sheets/manifests)
 manifests_prior: [2024-04-08_gdc_manifest_splice_lusc_prior.txt, 2024-04-08_gdc_manifest_star_counts_lusc_prior.txt]
-# Original (prior) sample sheets names in list (in folder <analysis_path>/sample_sheets/prior_sample_sheets)
-sample_sheets_prior: [2024-04-08_gdc_sample_sheet_splice_lusc_prior.tsv, 2024-04-08_gdc_sample_sheet_star_counts_lusc_prior.tsv] # for testing purposes
-# Methods with separate subfolders
-# methods: [BRASS,CaVEMan,CNV_segment,Pindel,Splicing,STAR_counts] # real methods
-methods: [Splicing, STAR_counts]
+
+# Original (prior) sample sheets names in list (in folder <analysis_path>/sample_sheets/sample_sheets_prior)
+sample_sheets_prior: [2024-04-08_gdc_sample_sheet_splice_lusc_prior.tsv, 2024-04-08_gdc_sample_sheet_star_counts_lusc_prior.tsv]
+
 # Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets). If not wanted or needed, put in: False
 sample_sheet_filtering: False
+
 # First_install: if you want to install the gdc-client as a conda environment. Set to True after first installation. If the installatation should be started again, set to "First_install" again
 # True: if you have installed the conda environment as gdc_client within this script (set to True after first installation)
 # Name for conda environment including the TCGA GDC-Client tool: if you want to use your own environment
 # False: do not use this Jupyter Notebook for the gdc-client
 conda_gdc: True
+
 # Manifest file for downloading TCGA data: either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests)
 # or use the output of the pipeline (input: False)
 manifest_for_download: [test_manifest.txt]
+
 # TCGA user token for restricted access files
-tcga_user_token_file: False # include secured file path with TCGA user token. If none is available, put in: False
+# include secured file path with TCGA user token. If none is available, put in: False
+tcga_user_token_file: False
 
