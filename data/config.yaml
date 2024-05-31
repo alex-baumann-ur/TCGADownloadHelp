@@ -25,3 +25,9 @@ manifest_for_download: [test_manifest.txt]
 # include secured file path with TCGA user token. If none is available, put in: False
 tcga_user_token_file: False
 
+# Snakemake pipeline configuration
+# Conda environment for Snakemake pipeline
+conda_snakemake: Snakemake
+# Threads to use 
+snakemake_threads: 4
+
