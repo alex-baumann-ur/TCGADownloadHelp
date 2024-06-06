@@ -5,14 +5,15 @@
 - Download data matching specific cases from previous analyses
 
 ## 2. Your input
-### 2.1 Prerequisites
+### 2.1. Prerequisites
 - To use this script as a one-touch pipeline, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the [Jupyter Notebook](https://anaconda.org/anaconda/jupyter) and the [pandas](https://anaconda.org/anaconda/pandas) package
 - If you want to do the further analysis step with the [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline, you will have to create a conda environment with the Snakemake and pandas package. You can also use the [given Snakemake environment file](envs/snakemake_env.txt) with this command to create a conda environment:
-´´´
-conda create --name Snakemake --file envs/snakemake_env.txt
-´´´
 
-### 2.1. Filter and select TCGA data
+```
+conda create --name Snakemake --file envs/snakemake_env.txt
+```
+
+### 2.2. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
 - Click on "Repository"
 
@@ -58,7 +59,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - Follow these steps every time for your new analyses, also when you have new aspects or file types to consider later on
 
 
-### 2.2. File locations for manifests and sample sheets
+### 2.3. File locations for manifests and sample sheets
 - Create a local analysis folder and in this folder, a "sample_sheets" folder with sub-folders "clinical_data", "manifests", and "sample_sheets_prior"
 
 &emsp;&emsp;&ensp;<analysis_path>
@@ -72,17 +73,29 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 &emsp;&emsp;&emsp;&emsp;&ensp;└── sample_sheets_prior    
 
 
-### 2.3. Optional: Download TCGA access token for restricted access files
+### 2.4. Optional: Download TCGA access token for restricted access files
 - For restricted access files:
     - Login at TCGA (with NIH account) for restricted access files
     - Download access token, save as secured file
 
 
-### 2.3. Adapt the configuration file
-- The configuration file ["data/config.yaml"](data/config.yaml) encompasses 
+### 2.5. Adapt the configuration file
+- The configuration file ["data/config.yaml"](data/config.yaml) encompasses all necessary information for a run of the pipeline to download TCGA data from a given manifest file and sample sheet.
+- Information on how to fill out the configuration file are prepared within the [configuration file](data/config.yaml).
+
+### 2.6. Start the pipeline
+- If you have done all previous steps, you can activate your conda environment with the installed Jupyter Notebook package.
+```
+conda activate <name_of_environment>
+```
+- Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb).
+- You can either run the script cell by cell or everything at once.
 
 
 ## 3. Pipeline steps explained
+### 3.1. Check validity of configuration file entries
+- Checks whether all files listed in the configuration file are existent.
+
 ### 3.1. Combine manifest with sample sheet, filter for relevant files
 - This is how a manifest file looks like:
 
