@@ -1,8 +1,10 @@
-# Analysis path
+# Path to local analysis folder
 # analysis_path: /home/alex/Dokumente/02_OLCIR/80_testing_gen_inst_pipeline/
 analysis_path: /home/alex/Dokumente/02_OLCIR/81_test_pipeline/
 
-# Original (prior) manifest files names in list (in folder <analysis_path>/sample_sheets/manifests)
+# Original (prior) manifest files names (in folder <analysis_path>/sample_sheets/manifests)
+# Use the list format (put your files in square brackets)
+# Example: [2024-06_manifest_]
 manifests_prior: [2024-04-08_gdc_manifest_splice_lusc_prior.txt, 2024-04-08_gdc_manifest_star_counts_lusc_prior.txt]
 
 # Original (prior) sample sheets names in list (in folder <analysis_path>/sample_sheets/sample_sheets_prior)
@@ -17,8 +19,9 @@ sample_sheet_filtering: False
 # False: do not use this Jupyter Notebook for the gdc-client
 conda_gdc: True
 
-# Manifest file for downloading TCGA data: either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests)
-# or use the output of the pipeline (input: False)
+# Manifest file for downloading TCGA data
+# Either enter a list of manifest files (in parentheses) manually (in folder <analysis_path>/sample_sheets/manifests)
+# False: use the output of the pipeline
 manifest_for_download: [test_manifest.txt]
 
 # TCGA user token for restricted access files
