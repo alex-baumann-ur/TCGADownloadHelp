@@ -124,11 +124,11 @@ gdc-client download -m manifest.txt -t user-token.txt
 ```
 
 ### 3.3. Rename the downloaded files as case_id.file_suffix
-- in manifest only id, filename with 36 different characters
+- As the filename consists of a suffix of 36 different characters as a unique id and is saved in a separate folder with another unique id of 36 characters, this script changes the suffix to the case id.
 - take merged manifest and sample sheet
 - rename downloaded files and put them in new folders for each analysis
 
 ### 3.4. Analyze files
-- with Snakemake pipeline
+- A Snakemake pipeline can be used to analyze all downloaded data 
 
 
