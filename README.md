@@ -5,6 +5,13 @@
 - Download data matching specific cases from previous analyses
 
 ## 2. Your input
+### 2.1 Prerequisites
+- To use this script as a one-touch pipeline, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the [Jupyter Notebook](https://anaconda.org/anaconda/jupyter) and the [pandas](https://anaconda.org/anaconda/pandas) package
+- If you want to do the further analysis step with the [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline, you will have to create a conda environment with the Snakemake and pandas package. You can also use the [given Snakemake environment file](envs/snakemake_env.txt) with this command to create a conda environment:
+´´´
+conda create --name Snakemake --file envs/snakemake_env.txt
+´´´
+
 ### 2.1. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
 - Click on "Repository"
@@ -85,9 +92,9 @@
 
 <img src="figures/tcga_sample_sheet_example.png" style="width:1000px; position: relative; left: 40px">
 
-- Merge manifest and sample sheet
-- If previous selection of case IDs wanted, filter for specific case IDs of previous analysis
-- create adapted filtered manifest file for gdc-client download
+- Merges manifest and sample sheet
+- If previous selection of case IDs wanted, the script filters for specific case IDs of previous analysis
+- Creates adapted filtered manifest file for gdc-client download
 
 ### 3.2. Download TCGA data via a manifest document and the GDC-client tool
 - The script creates a new conda environment called "gdc_client" and downloads the gdc-client tool. If you have already installed the gdc-client in a separete conda environment, you can specify that in the configuration file.
