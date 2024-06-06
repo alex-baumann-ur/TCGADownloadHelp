@@ -9,7 +9,7 @@
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
 - Click on "Repository"
 
-<img src="figures/tcga_gdc_repository_files.png" style="width:1000px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_repository_files.png" style="width:1000px; position: relative; left: 40px">
 
 - Filter by files:
     - Experimental strategy
@@ -18,7 +18,7 @@
     - Access
     - ...
 
-<img src="figures/tcga_gdc_files_filter.png" style="width:300px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_files_filter.png" style="width:300px; position: relative; left: 40px">
 
 - Filter by cases:
     - Primary site
@@ -27,26 +27,26 @@
     - Gender
     - ...
 
-<img src="figures/tcga_gdc_cases_filter.png" style="width:1000px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_cases_filter.png" style="width:1000px; position: relative; left: 40px">
 
 - Select your files of interest or put all relevant data into the cart
 
-<img src="figures/tcga_gdc_select_file_cart.png" style="width:800px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_select_file_cart.png" style="width:800px; position: relative; left: 40px">
 
 - Click on the Cart symbol at the top to view the contents of the cart
 
-<img src="figures/tcga_gdc_cart_overview.png" style="width:1000px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_cart_overview.png" style="width:1000px; position: relative; left: 40px">
 
 - Click on "Download Associated Data". Download the following files:
     - Sample Sheet
     - Metadata
     - Optional: Clinical: TSV data for additional information
 
-<img src="figures/tcga_gdc_cart_ass_data.png" style="width:180px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_cart_ass_data.png" style="width:180px; position: relative; left: 40px">
 
 - Click on "Download Cart". Download the Manifest for a data download with the gdc-client tool
 
-<img src="figures/tcga_gdc_cart_manifest.png" style="width:120px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_gdc_cart_manifest.png" style="width:120px; position: relative; left: 40px">
 
 - Follow these steps every time for your new analyses, also when you have new aspects or file types to consider later on
 
@@ -79,11 +79,11 @@
 ### 3.1. Combine manifest with sample sheet, filter for relevant files
 - This is how a manifest file looks like:
 
-<img src="figures/tcga_manifest_file_example.png" style="width:1000px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_manifest_file_example.png" style="width:1000px; position: relative; left: 40px">
 
 - This is how a sample sheet looks like:
 
-<img src="figures/tcga_sample_sheet_example.png" style="width:1000px; position: relative; left: 40px">
+&emsp;&emsp;&ensp;<img src="figures/tcga_sample_sheet_example.png" style="width:1000px; position: relative; left: 40px">
 
 - Merge manifest and sample sheet
 - If previous selection of case IDs wanted, filter for specific case IDs of previous analysis
