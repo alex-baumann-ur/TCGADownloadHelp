@@ -103,7 +103,7 @@ gdc-client download -m manifest.txt (-t user-token.txt)
 <br>
 &emsp;&emsp;&ensp;├── 45c6656d-a8f3-4968-aa40-142f3a340dde
 <br>
-&emsp;&emsp;&ensp;│&emsp;&emsp;&ensp;└── ec765dd2-6541-4cdc-a26c-6d116398dc87.rna_seq.augmented_star_gene_counts.tsv
+&emsp;&emsp;&ensp;│&emsp;&ensp;└── ec765dd2-6541-4cdc-a26c-6d116398dc87.rna_seq.augmented_star_gene_counts.tsv
 <br>
 &emsp;&emsp;&ensp;└── 5d703777-b3db-4ed5-952b-203a5641767e
 <br>
