@@ -32,6 +32,11 @@ manifest_for_download: [test_manifest.txt]
 # Include secured file path with TCGA user token. If none is available or necessary, put in: False
 tcga_user_token_file: False
 
+# Methods dictionary for creating analysis folders for TCGA files
+# Adapt the dictionary, if you want to use other folder names or want to add methods (<method_in_file_name>:<method_folder_name>)
+methods_dict: {'BRASS':'BRASS', 'CaVEMan':'CaVEMan', 'ASCAT':'CNV_segment', 'pindel':'Pindel', 'star_splice':'Splicing', 
+               'star_gene_counts':'STAR_counts'}
+
 # Snakemake analysis pipeline configuration
 # Name of the conda environment for Snakemake pipeline
 conda_snakemake: Snakemake

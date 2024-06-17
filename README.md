@@ -56,7 +56,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - Information on how to fill out the configuration file are prepared within the [configuration file](data/config.yaml).
 
 ### 2.6. Adapt the Snakemake pipeline
-- This step is optional, as this Snakemake pipeline is only a template and is not useful for the analysis of your TCGA samples yet.
+- This step is optional, as this Snakemake pipeline is only a template and is not ready to use for the analysis of your TCGA samples yet.
 - If you have decided what to analyze, you can define the rules in the Snakemake pipeline.
 
 ### 2.7. Start the pipeline
@@ -122,7 +122,8 @@ this script changes the suffix to the case id.
 &emsp;&emsp;&emsp;&emsp;&ensp;└── TCGA-33-4589.rna_seq.augmented_star_gene_counts.tsv
 
 ### 3.4. Analyze files
-- A Snakemake pipeline can be used to analyze all downloaded data.
-- The Snakemake pipeline is a template and is not ready to use for your
+- A Snakemake pipeline can be used to analyze all downloaded data at once (if wanted).
+- The Snakemake pipeline is a template and is not ready to use for your analysis.
+- 
 
 
