@@ -18,9 +18,9 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 ### 2.2. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
-- Click on "Repository"
+- Click on "Repository" ([image](figures/tcga_gdc_repository_files.png){:target="_blank" rel="noopener"})
 
-<img src="figures/tcga_gdc_repository_files.png" style="width:1000px; position: relative; left: 40px">
+<!---<img src="figures/tcga_gdc_repository_files.png" style="width:1000px; position: relative; left: 40px">--->
 
 - Filter by files:
     - Experimental strategy
@@ -97,8 +97,9 @@ conda activate <name_of_environment>
 ```
 - Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb).
 - You can either run the script cell by cell or everything at once.
-
-- If you feel comfortable with using the command line only, you can run the script ["TCGA_pipeline_python.py"](TCGA_pipeline_python.py) in an environment with working Python and pandas packages.
+<br>
+- If you feel comfortable with using the command line only, you can run the script ["TCGA_pipeline_python.py"](TCGA_pipeline_python.py) in an environment with working Python, [pandas](https://anaconda.org/anaconda/pandas), and [pyyaml](https://anaconda.org/conda-forge/pyyaml) packages.
+- 
 
 
 ## 3. Pipeline steps explained
