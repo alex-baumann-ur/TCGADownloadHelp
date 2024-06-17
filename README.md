@@ -20,19 +20,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
 - Click on "Repository" ([image](figures/tcga_gdc_repository_files.png))
 
-- Filter by files ([image](figures/tcga_gdc_files_filter.png)):
-    - Experimental strategy
-    - Data type
-    - Data format
-    - Access
-    - ...
-
-- Filter by cases ([image](figures/tcga_gdc_cases_filter.png)):
-    - Primary site
-    - Disease Type
-    - Project
-    - Gender
-    - ...
+- Filter by files ([image](figures/tcga_gdc_files_filter.png)) or by cases
 
 - Select your files of interest or put all relevant data into the cart ([image](figures/tcga_gdc_select_file_cart.png))
 
