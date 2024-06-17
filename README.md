@@ -98,20 +98,28 @@ gdc-client download -m manifest.txt (-t user-token.txt)
 
 ### 3.3. Rename the downloaded files as case_id.file_suffix
 - The filename consists of a suffix of 36 different characters as a unique id and is saved in a separate folder with another unique id of 36 characters. This is an example:
-<br>
+
 &emsp;&emsp;&ensp;00_raw_data
+<br>
 &emsp;&emsp;&ensp;├── 45c6656d-a8f3-4968-aa40-142f3a340dde
-&emsp;&emsp;&ensp;│   ├── ec765dd2-6541-4cdc-a26c-6d116398dc87.rna_seq.augmented_star_gene_counts.tsv
+<br>
+&emsp;&emsp;&ensp;│&emsp;&emsp;&ensp;├── ec765dd2-6541-4cdc-a26c-6d116398dc87.rna_seq.augmented_star_gene_counts.tsv
+<br>
 &emsp;&emsp;&ensp;└── 5d703777-b3db-4ed5-952b-203a5641767e
+<br>
 &emsp;&emsp;&emsp;&emsp;&ensp;├── 1138323c-5a60-4535-bfb3-31703a106798.rna_seq.augmented_star_gene_counts.tsv
+<br>
 
 - The manifest and sample sheet are merged to map the case id to the unique file id.
 this script changes the suffix to the case id.
 - The downloaded files are renamed and sorted in new folders for each analysis. This is an example:
 <br>
 &emsp;&emsp;&ensp;01_sample_data
+<br>
 &emsp;&emsp;&ensp;└── STAR_counts
+<br>
 &emsp;&emsp;&emsp;&emsp;&ensp;├── TCGA-18-3410.rna_seq.augmented_star_gene_counts.tsv
+<br>
 &emsp;&emsp;&emsp;&emsp;&ensp;└── TCGA-33-4589.rna_seq.augmented_star_gene_counts.tsv
 
 ### 3.4. Analyze files
