@@ -18,46 +18,32 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 ### 2.2. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
-- Click on "Repository" ([image](figures/tcga_gdc_repository_files.png){:target="_blank" rel="noopener"})
+- Click on "Repository" ([image](figures/tcga_gdc_repository_files.png))
 
-<!---<img src="figures/tcga_gdc_repository_files.png" style="width:1000px; position: relative; left: 40px">--->
-
-- Filter by files:
+- Filter by files ([image](figures/tcga_gdc_files_filter.png)):
     - Experimental strategy
     - Data type
     - Data format
     - Access
     - ...
 
-<img src="figures/tcga_gdc_files_filter.png" style="width:300px; position: relative; left: 40px">
-
-- Filter by cases:
+- Filter by cases ([image](figures/tcga_gdc_cases_filter.png)):
     - Primary site
     - Disease Type
     - Project
     - Gender
     - ...
 
-<img src="figures/tcga_gdc_cases_filter.png" style="width:1000px; position: relative; left: 40px">
+- Select your files of interest or put all relevant data into the cart ([image](figures/tcga_gdc_select_file_cart.png))
 
-- Select your files of interest or put all relevant data into the cart
+- Click on the Cart symbol at the top to view the contents of the cart ([image](figures/tcga_gdc_cart_overview.png))
 
-<img src="figures/tcga_gdc_select_file_cart.png" style="width:800px; position: relative; left: 40px">
-
-- Click on the Cart symbol at the top to view the contents of the cart
-
-<img src="figures/tcga_gdc_cart_overview.png" style="width:1000px; position: relative; left: 40px">
-
-- Click on "Download Associated Data". Download the following files:
+- Click on "Download Associated Data" ([image](figures/tcga_gdc_cart_ass_data.png)). Download the following files:
     - Sample Sheet
     - Metadata
     - Optional: Clinical: TSV data for additional information
 
-<img src="figures/tcga_gdc_cart_ass_data.png" style="width:180px; position: relative; left: 40px">
-
-- Click on "Download Cart". Download the Manifest for a data download with the gdc-client tool
-
-<img src="figures/tcga_gdc_cart_manifest.png" style="width:120px; position: relative; left: 40px">
+- Click on "Download Cart" ([image](figures/tcga_gdc_cart_manifest.png)). Download the Manifest for a data download with the gdc-client tool
 
 - Follow these steps every time for your new analyses, also when you have new aspects or file types to consider later on
 
