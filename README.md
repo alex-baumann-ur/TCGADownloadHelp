@@ -86,13 +86,19 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - The configuration file ["data/config.yaml"](data/config.yaml) encompasses all necessary information for a run of the pipeline to download TCGA data from a given manifest file and sample sheet.
 - Information on how to fill out the configuration file are prepared within the [configuration file](data/config.yaml).
 
-### 2.6. Start the pipeline
+### 2.6. Adapt the Snakemake pipeline
+- This step is optional, as this Snakemake pipeline is only a template and is not useful for the analysis of your TCGA samples yet.
+- If you have decided what to analyze, you can define the rules in the Snakemake pipeline.
+
+### 2.7. Start the pipeline
 - If you have done all previous steps, you can activate your conda environment with the installed Jupyter Notebook package.
 ```
 conda activate <name_of_environment>
 ```
 - Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb).
 - You can either run the script cell by cell or everything at once.
+
+- If you feel comfortable with using the command line only, you can run the script ["TCGA_pipeline_python.py"](TCGA_pipeline_python.py) in an environment with working Python and pandas packages.
 
 
 ## 3. Pipeline steps explained
@@ -128,10 +134,11 @@ gdc-client download -m manifest.txt -t user-token.txt
 
 ### 3.3. Rename the downloaded files as case_id.file_suffix
 - As the filename consists of a suffix of 36 different characters as a unique id and is saved in a separate folder with another unique id of 36 characters, this script changes the suffix to the case id.
-- take merged manifest and sample sheet
-- rename downloaded files and put them in new folders for each analysis
+- The manifest and sample sheet are merged to map the case id to the unique file id.
+- The downloaded files are renamed and sorted in new folders for each analysis.
 
 ### 3.4. Analyze files
-- A Snakemake pipeline can be used to analyze all downloaded data 
+- A Snakemake pipeline can be used to analyze all downloaded data.
+- The Snakemake pipeline is a template and is not ready to use for your
 
 
