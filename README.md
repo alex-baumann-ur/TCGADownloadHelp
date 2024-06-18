@@ -1,7 +1,5 @@
 # Handling TCGA data
 
-# --- Still under construction ---
-
 ## 1. Overall goals
 - Work with TCGA data (e.g. of a specific study or primary site)
 - Downoad data (or further data after a while)
