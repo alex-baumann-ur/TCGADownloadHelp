@@ -1,7 +1,10 @@
+import yaml
 import os
 import subprocess
-import yaml
 import shlex
+
+##### Download TCGA data via a manifest document and the GDC-client tool #####
+print('##### Download TCGA data via a manifest document and the GDC-client tool #####')
 
 # Read in manifest download files (either from manual input in config.yaml or from previous pipeline steps)
 def Create_Manifest_Download_List():
@@ -13,9 +16,11 @@ def Create_Manifest_Download_List():
 
     if manifest_download_list == False:
         manifest_for_download = False
+        # merge_manifest_sample_sheet = False
         print('Please execute the previous part of the pipeline or input your files manually in the data/config.yaml file')
     else:
-        manifest_for_download = [analysis_path+'sample_sheets/manifests/'+i for i in manifest_download_list]
+        manifest_for_download = [analysis_path+'sample_sheets/manifests_for_download/'+i for i in manifest_download_list]
+        # merge_manifest_sample_sheet = []
     
     return manifest_for_download
 
@@ -30,7 +35,7 @@ def Download_gdc_client():
 
     if conda_gdc == False:
         print('Please execute the TCGA data download in your own environment or '+
-            'set "conda_gdc" in the data/config.yaml file to "True" to create a conda environment with the gdc-client')
+            'set "conda_gdc" in the data/config.yaml file to "First_install" to create a conda environment with the gdc-client')
     elif conda_gdc == True:
         name_conda_gdc_env = 'gdc_client'
     elif conda_gdc == 'First_install':
@@ -70,10 +75,10 @@ def TCGA_Data_Download():
         for manifest_file in manifest_for_download:
             if tcga_user_token_file == False:
                 print(f'Download TCGA data with TCGA manifest {manifest_file.split("/")[-1]} without TCGA user token')
-                command_download_tcga_data = f'gdc-client download -m {manifest_file}'
+                command_download_tcga_data = f'conda run -n {name_conda_gdc_env} gdc-client download -m {manifest_file}'
             else:
                 print(f'Download TCGA data with TCGA manifest {manifest_file.split("/")[-1]} with TCGA user token file {tcga_user_token_file.split("/")[-1]}')
-                command_download_tcga_data = f'conda run -n {name_conda_gdc_env} gdc-client download -m {manifest_file} {tcga_user_token_file}'
+                command_download_tcga_data = f'conda run -n {name_conda_gdc_env} gdc-client download -m {manifest_file} -t {tcga_user_token_file}'
             process = subprocess.Popen(command_download_tcga_data, cwd=raw_data_path, shell=True)
             process.wait()
 
