@@ -59,8 +59,8 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 ### 2.7. Start the pipeline
 - If you have done all previous steps, you can start the pipeline.
-- If you feel comfortable with using the command line only, you can run the script ["TCGA_pipeline_python.py"](TCGA_pipeline_python.py) in an environment with working Python, [pandas](https://anaconda.org/anaconda/pandas), and [pyyaml](https://anaconda.org/conda-forge/pyyaml) packages.
-- Otherwise, you can activate your conda environment with the installed Jupyter Notebook package.
+- If you feel comfortable with using the command line only, you can run the [Python scripts](scripts_TCGA_pipeline) in an environment with working Python, [pandas](https://anaconda.org/anaconda/pandas), and [pyyaml](https://anaconda.org/conda-forge/pyyaml) packages (such as prepared [here](envs/python_env.txt)). You can either run the [full Python script](scripts_TCGA_pipeline/full_TCGA_pipeline_python.py) or one by one numerically.
+- Otherwise, you can activate your conda environment with the installed Jupyter Notebook package to use the Jupyter Notebook.
 ```
 conda activate <name_of_environment>
 ```
@@ -122,6 +122,4 @@ this script changes the suffix to the case id.
 ### 3.4. Analyze files
 - A Snakemake pipeline can be used to analyze all downloaded data at once (if wanted).
 - The Snakemake pipeline is a template and is not ready to use for your analysis.
-- 
-
-
+- Please adapt the rules in the [Snakemake file](Snakefile) to use Snakemake.
