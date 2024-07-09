@@ -50,7 +50,13 @@ def Check_Already_Downloaded(manifest_sample_sheet_df, method_dict):
         df.loc[df['File Name'].str.contains(met), 'Folder'] = method_dict[met]
     
     # 36 characters file ID
-    df['File Suffix'] = df['File Name'].str[36:]
+    df['File Suffix'] = ''
+    df.loc[(df['File Name'].str.startswith('TCGA_LUAD'))|(['File Name'].str.startswith('TCGA-LUAD')), 'File Suffix'] = df['File Name'].str[46:]
+    df.loc[df['File Name'].str[36]=='.', 'File Suffix'] = df['File Name'].str[36:]
+    df.loc[(df['File Name'].str[36]=='_')&(df['File Name'].str.endswith('.bam')), 'File Suffix'] = '.' + df['File Name'].str[37:]
+    df.loc[df['File Name'].str.endswith('.idat'), 'File Suffix'] = '.' + df['File Name'].str[37:]
+    df.loc[df['File Suffix']=='', 'File Suffix'] = '.' + df['File Name']
+
     df['Path_raw'] = analysis_path+'00_raw_data/'+df['File ID']+'/'+df['File Name']
     df['Path_sample'] = analysis_path+'01_sample_data/'+df['Folder']+'/'+df['Case ID']+df['File Suffix']
 
