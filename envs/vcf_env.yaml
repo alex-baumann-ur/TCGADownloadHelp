@@ -46,4 +46,3 @@ dependencies:
   - wheel=0.34.2=py36_0
   - xz=5.2.6=h166bdaf_0
   - zlib=1.2.13=hd590300_5
-prefix: /users/sbi00/abaumann/.conda/envs/VCF
