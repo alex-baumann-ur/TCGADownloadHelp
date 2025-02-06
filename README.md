@@ -24,17 +24,14 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 - Click on the Cart symbol at the top to view the contents of the cart ([image](figures/tcga_gdc_cart_overview.png)).
 
-- Click on "Download Associated Data" ([image](figures/tcga_gdc_cart_ass_data.png)). Download the following files:
-    - Sample Sheet
-    - Metadata
-    - Optional: Clinical: TSV data for additional information
+- Click on "Download Associated Data" ([image](figures/tcga_gdc_cart_ass_data.png)). Download the Sample Shee (and optional files like Clinical data or Metadata for additional information).
 
 - Click on "Download Cart" ([image](figures/tcga_gdc_cart_manifest.png)). Download the Manifest for a data download with the gdc-client tool.
 
 - Follow these steps every time for your new analyses, also when you have new aspects or file types to consider later on.
 
 ### 2.3. File locations for manifests and sample sheets
-- Create a local analysis folder and in this folder, a "sample_sheets" folder with sub-folders "clinical_data", "manifests", and "sample_sheets_prior"
+- In your local analysis folder, a "sample_sheets" folder with subdirectories "clinical_data", "manifests", and "sample_sheets_prior" is created by the pipeline. Please save the previously downloaded data (especially Manifest file, Sample Sheet) in the according folders.
 
 &emsp;&emsp;&ensp;<analysis_path>
 
@@ -55,7 +52,9 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 ### 2.6. Adapt the Snakemake pipeline
 - This step is optional, as this Snakemake pipeline is only a template and is not ready to use for the analysis of your TCGA samples yet.
-- If you have decided what to analyze, you can define the rules in the Snakemake pipeline.
+- If you have decided what to analyze, you can define the rules in the Snakefile_sample_analysis pipeline.
+- Each rule requires a Python script with the analysis methods or an adapted shell command in the rule.
+- The Python scripts for the analysis are located in the folder "scripts_snakemake".
 
 ### 2.7. Start the pipeline
 - If you have done all previous steps, you can start the pipeline.

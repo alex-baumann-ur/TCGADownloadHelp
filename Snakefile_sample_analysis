@@ -1,0 +1,72 @@
+### Run the pipeline with the following command in the directory with the Snakefile in a Snakemake conda environment:
+# snakemake --snakefile Snakefile_sample_analysis --cores {snakemake_threads} 
+
+import pandas as pd
+import os
+import yaml
+
+with open('data/config.yaml', 'r') as streamfile:
+    conf_yaml = yaml.load(streamfile, Loader=yaml.FullLoader)
+
+analysis_path = conf_yaml['analysis_path']
+snakemake_caseids = conf_yaml['snakemake_caseids']
+
+METHODS_LIST = conf_yaml['snakemake_methods']
+
+# Prepare sample case ID list for further analysis
+def Prepare_Samples_Lists():
+    if snakemake_caseids == True:
+        manifest_list = conf_yaml['manifest_for_download']
+        manifests = [pd.read_table(analysis_path+'sample_sheets/manifests_merged_sample_sheet/'+i.rsplit('_ready.',1)[0]+'_merged_sample_sheet.txt') 
+                    for i in manifest_list]
+        sample_sheet = pd.concat(manifests)
+    else:
+        sample_sheet = pd.read_table(snakemake_caseids)
+    
+    # check if files exist
+    sample_sheet['is_file_caseid'] = sample_sheet['Path_sample'].apply(os.path.isfile)
+
+    SAMPLES_LIST = []
+    for method in METHODS_LIST:
+        sample_sheet_met = sample_sheet[(sample_sheet['Folder']==method)&(sample_sheet['is_file_caseid']==True)].copy()
+        SAMPLES_LIST.append(list(sample_sheet_met['Case ID'].unique()))
+    
+    return SAMPLES_LIST
+
+SAMPLES_LIST = Prepare_Samples_Lists()
+
+# Create necessary folders
+os.makedirs(analysis_path+'02_results_raw', exist_ok=True)
+for m in METHODS_LIST:
+    os.makedirs(analysis_path+'02_results_raw/'+m, exist_ok=True)
+os.makedirs(analysis_path+'03_results_combined', exist_ok=True)
+
+# Create rules for all of your methods from the config file (snakemake_methods) and add them here.
+# Each rule requires a Python script with the analysis methods or an adapted shell command in the rule.
+# The Python scripts for the analysis are located in the folder "scripts_snakemake".
+rule all:
+    input:
+        expand(analysis_path+'02_results_raw/'+METHODS_LIST[0]+'/{sample}_'+METHODS_LIST[0]+'_out.txt', sample=SAMPLES_LIST[0]),
+        expand(analysis_path+'02_results_raw/'+METHODS_LIST[1]+'/{sample}_'+METHODS_LIST[1]+'_out.txt', sample=SAMPLES_LIST[1]),
+        #expand(analysis_path+'02_results_raw/'+METHODS_LIST[2]+'/{sample}_'+METHODS_LIST[2]+'_out.txt', sample=SAMPLES_LIST[2]),
+
+
+rule STAR_counts:
+    input:
+        in_file = analysis_path+'01_sample_data/STAR_counts/{sample}.rna_seq.augmented_star_gene_counts.tsv',
+    output:
+        out_txt = analysis_path+'02_results_raw/STAR_counts/{sample}_STAR_counts_out.txt',
+    threads: 2
+    script:
+        'scripts_snakemake/STAR_counts_analysis.py'
+
+
+rule STAR_splicing:
+    input:
+        in_file = analysis_path+'01_sample_data/STAR_splicing/{sample}.rna_seq.star_splice_junctions.tsv.gz',
+    output:
+        out_txt = analysis_path+'02_results_raw/STAR_splicing/{sample}_STAR_splicing_out.txt',
+    threads: 2
+    script:
+        'scripts_snakemake/STAR_splicing_analysis.py'
+
