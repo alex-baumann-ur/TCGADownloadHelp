@@ -2,6 +2,14 @@
 # Example: /home/user1/Documents/project1/01_tcga_data_analysis_1/
 analysis_path: 
 
+# TCGA study abbreviation included in this 
+# Example: ['TCGA-LUAD', 'TCGA-LUSC']
+tcga_study: []
+
+# TCGA sample types to download
+# Example: ['Primary Tumor']
+sample_type: []
+
 # Original (prior) manifest files names (in folder <analysis_path>/sample_sheets/manifests)
 # Use the list format (put your files in square brackets and comma-separated)
 # Example: [2024-06_manifest_2.txt, 2024-05_manifest_1.txt]
@@ -12,9 +20,10 @@ manifests_prior: []
 # Example: [2024-05_sample_sheet_1.tsv, 2024-06_sample_sheet_2.tsv]
 sample_sheets_prior: []
 
-# Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets).
+# Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets/sample_sheets_prior).
+# Example: 2024-05_sample_sheet_filtering.tsv
 # If not wanted or needed, put in: False
-sample_sheet_filtering: False
+sample_sheet_filtering: 
 
 # Conda environment for gdc-client download. Use one of the following options:
 #   First_install: if you want to install the gdc-client as a conda environment. Set to True after first installation. If the installatation should be started again, set to "First_install" again
@@ -26,28 +35,36 @@ conda_gdc: First_install
 # Specify manifest file for downloading TCGA data
 # Either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests), use list format (put your files in square brackets and comma-separated)
 # False: use the output of the pipeline
-manifest_for_download: False
+manifest_for_download: []
 
 # Optional TCGA user token for restricted access files
 # Include secured file path with TCGA user token
 # False: no TCGA user token if none is available or necessary
-tcga_user_token_file: False
+tcga_user_token_file: 
 
 # Methods dictionary for creating analysis folders for TCGA files
 # Adapt the dictionary, if you want to use other folder names or want to add methods (<method_in_file_name>:<method_folder_name>)
-methods_dict: {'BRASS':'BRASS', 'CaVEMan':'CaVEMan', 'ASCAT':'CNV_segment', 'pindel':'Pindel', 'star_splice':'Splicing', 
-               'star_gene_counts':'STAR_counts'}
+methods_dict: {'nationwidechildrens':'Biospecimen_Clinical', 'absolute_liftover':'Absolute_LiftOver', 'aliquot_ensemble':'Ensemble',
+               'arriba':'Arriba', 'ascat2':'ASCAT2', 'gene_level_copy_number.v36':'ASCAT2', 'ascat3':'ASCAT3',
+               'wgs.ASCAT.':'ASCAT_NGS', 'mirbase21':'miRNA_quantification', 'birdseed':'Birdseed', 
+               'BRASS':'BRASS', '.WholeGenome.':'DNA_mapping', '_wxs_gdc_realn.bam':'DNA_mapping', '_wgs_gdc_realn.bam':'DNA_mapping', 
+               'mirna_gdc':'miRNA_mapping', 'CaVEMan':'CaVEMan', 'GenomeWideSNP':'DNAcopy', '_wgs_gdc_realn.cr.igv':'GATK4_CNV', 
+               'GATK4_CNV', 'gatk4.copy_number_variation':'GATK4_CNV', 'gatk4_mutect2':'GATK4_MuTect2',
+               'somatic_sv':'Manta', 'somatic.SV.bed':'Manta', '.muse.':'MuSE', '.mutect2.':'MuTect2', 
+               'Pindel':'Pindel', '.idat':'Methylation', 'methylation_array':'Methylation', 'rna_seq.genomic':'RNA_mapping', 
+               'rna_seq.transcriptome':'RNA_mapping', 'rna_seq.chimeric':'RNA_mapping', 'star_splice':'STAR_splicing', 
+               'star_gene_counts':'STAR_counts', 'star_fusion':'STAR_fusion', 'svaba':'SvABA', 'VarScan2':'VarScan2'}
 
-### Snakemake analysis pipeline configuration
+### Snakemake analysis pipeline configuration (Snakefile: Snakefile_sample_analysis)
 # Name of the conda environment for Snakemake pipeline
-conda_snakemake: Snakemake
+conda_snakemake: 
 
 # How many threads to use in the Snakemake pipeline
 snakemake_threads: 4
 
 # Which analysis methods should be used and analyzed with the Snakemake pipeline
 # Enter a list of analysis methods from the methods dictionary (in square brackets)
-# Example: [Splicing, STAR_counts]
+# Example: [STAR_counts, STAR_splicing]
 snakemake_methods: []
 
 # Which case IDs should be analyzed with the Snakemake pipeline
