@@ -6,8 +6,8 @@ analysis_path:
 # Example: ['TCGA-LUAD', 'TCGA-LUSC']
 tcga_study: []
 
-# TCGA sample types to download
-# Example: ['Primary Tumor']
+# TCGA sample (tissue) types to download
+# Example: ['Tumor', 'Tumor, Normal']
 sample_type: []
 
 # Original (prior) manifest files names (in folder <analysis_path>/sample_sheets/manifests)
