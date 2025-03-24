@@ -25,7 +25,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
 - Replace the "config.yaml" file in the pipeline's "data" folder with the "config.yaml" file in the "test_example" folder.
 - Add the path of your analysis folder in the "config.yaml" file under "analysis_path:".
-- Activate your Jupyter or Snakemake environment and run the pipeline
+- Activate your Jupyter or Snakemake environment and run the pipeline (further explained in 2.8)
 
 ### 2.3. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
