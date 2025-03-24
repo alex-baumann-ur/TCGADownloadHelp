@@ -75,7 +75,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 ```
 conda activate <name_of_environment>
 ```
-Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) and either run the script cell by cell or everything at once.
+- Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) and either run the script cell by cell or everything at once.
 
 2. If you prefer using Snakemake, you can run the [Python scripts](scripts_TCGA_pipeline) in an environment with working Snakemake.
 ```
