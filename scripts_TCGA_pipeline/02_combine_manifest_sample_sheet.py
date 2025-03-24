@@ -99,7 +99,7 @@ if sample_sheet_filtering != False:
     list_manifests_for_download = []
     for manifest, file_name_manifest in zip(merge_manifest_sample_sheet, manifests):
         # only include primary tumor samples
-        filtered_manifest = manifest[(manifest['Case ID'].isin(case_ids))&(manifest['Sample Type'].isin(sample_type))].copy()
+        filtered_manifest = manifest[(manifest['Case ID'].isin(case_ids))&(manifest['Tissue Type'].isin(sample_type))].copy()
 
         msg4 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+'Manifest has been filtered for provided Case IDs.')
         print(msg4)
