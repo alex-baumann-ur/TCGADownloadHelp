@@ -7,14 +7,27 @@
 
 ## 2. Your input
 ### 2.1. Prerequisites
-- To use this script as a one-touch pipeline, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the [Jupyter Notebook](https://anaconda.org/anaconda/jupyter) and the [pandas](https://anaconda.org/anaconda/pandas) package
-- If you want to do the further analysis step with the [Snakemake](https://snakemake.readthedocs.io/en/stable/) pipeline, you will have to create a conda environment with the Snakemake and pandas package. You can also use the [given Snakemake environment file](envs/snakemake_env.txt) with this command to create a conda environment:
+- To use this script as a one-touch pipeline with the Jupyter Notebook, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the [Jupyter Notebook](https://anaconda.org/anaconda/jupyter) and the [pandas](https://anaconda.org/anaconda/pandas) package. You can also use the [given Jupyter environment file](envs/jupyter_env.txt) with this command to create a conda environment:
+
+```
+conda create --name Jupyter --file envs/jupyter_env.txt
+```
+
+- If you want use this script as a one-touch pipeline with [Snakemake](https://snakemake.readthedocs.io/en/stable/) or to do the further analysis step with the Snakemake_sample_analysis pipeline, you will have to create a conda environment with the Snakemake and pandas package. You can also use the [given Snakemake environment file](envs/snakemake_env.txt) with this command to create a conda environment:
 
 ```
 conda create --name Snakemake --file envs/snakemake_env.txt
 ```
 
-### 2.2. Filter and select TCGA data
+## 2.2 Quick example
+- To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 6 files of the TCGA database.
+- After you downloaded the whole GitHub repository, create a local folder on your computer where the TCGA data should be downloaded.
+- Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
+- Replace the "config.yaml" file in the pipeline's "data" folder with the "config.yaml" file in the "test_example" folder.
+- Add the path of your analysis folder in the "config.yaml" file under "analysis_path:".
+- Activate your Jupyter or Snakemake environment and run the pipeline
+
+### 2.3. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
 - Click on "Repository" ([image](figures/tcga_gdc_repository_files.png))
 
@@ -30,7 +43,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 - Follow these steps every time for your new analyses, also when you have new aspects or file types to consider later on.
 
-### 2.3. File locations for manifests and sample sheets
+### 2.4. File locations for manifests and sample sheets
 - In your local analysis folder, a "sample_sheets" folder with subdirectories "clinical_data", "manifests", and "sample_sheets_prior" is created by the pipeline. Please save the previously downloaded data (especially Manifest file, Sample Sheet) in the according folders.
 
 &emsp;&emsp;&ensp;<analysis_path>
@@ -43,27 +56,35 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 <br>
 &emsp;&emsp;&emsp;&emsp;&ensp;└── sample_sheets_prior    
 
-### 2.4. Optional: Download TCGA access token for restricted access files
+### 2.5. Optional: Download TCGA access token for restricted access files
 - For restricted access files, login at TCGA (with NIH account) and download an access token, save as a secured file.
 
-### 2.5. Adapt the configuration file
+### 2.6. Adapt the configuration file
 - The configuration file ["data/config.yaml"](data/config.yaml) encompasses all necessary information for a run of the pipeline to download TCGA data from a given manifest file and sample sheet.
 - Information on how to fill out the configuration file are prepared within the [configuration file](data/config.yaml).
 
-### 2.6. Adapt the Snakemake pipeline
-- This step is optional, as this Snakemake pipeline is only a template and is not ready to use for the analysis of your TCGA samples yet.
-- If you have decided what to analyze, you can define the rules in the Snakefile_sample_analysis pipeline.
+### 2.7. Adapt the Snakemake sample analysis pipeline
+- This step is optional, as this Snakemake sample analysis pipeline is only a template and is not ready to use for the analysis of your TCGA samples yet.
+- If you have decided what to analyze, you can define the rules in the [Snakefile_sample_analysis](Snakefile_sample_analysis).
 - Each rule requires a Python script with the analysis methods or an adapted shell command in the rule.
-- The Python scripts for the analysis are located in the folder "scripts_snakemake".
+- The Python scripts for the analysis are located in the folder [scripts_snakemake](scripts_snakemake).
 
-### 2.7. Start the pipeline
-- If you have done all previous steps, you can start the pipeline.
-- If you feel comfortable with using the command line only, you can run the [Python scripts](scripts_TCGA_pipeline) in an environment with working Python, [pandas](https://anaconda.org/anaconda/pandas), and [pyyaml](https://anaconda.org/conda-forge/pyyaml) packages (such as prepared [here](envs/python_env.txt)). You can either run the [full Python script](scripts_TCGA_pipeline/full_TCGA_pipeline_python.py) or one by one numerically.
-- Otherwise, you can activate your conda environment with the installed Jupyter Notebook package to use the Jupyter Notebook.
+### 2.8. Start the pipeline
+- If you have done all previous steps, you can start the TCGADownloadHelp pipeline.
+1. You can activate your conda environment with the installed Jupyter Notebook package to use the Jupyter Notebook.
 ```
 conda activate <name_of_environment>
 ```
-- Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) and either run the script cell by cell or everything at once.
+Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) and either run the script cell by cell or everything at once.
+
+2. If you prefer using Snakemake, you can run the [Python scripts](scripts_TCGA_pipeline) in an environment with working Snakemake.
+```
+conda activate <name_of_environment>
+```
+- You can run the Snakemake pipeline using the default parameters with:
+```
+snakemake
+```
 
 ## 3. Pipeline steps explained
 ### 3.1. Check validity of configuration file entries
