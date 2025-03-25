@@ -19,19 +19,19 @@ os.makedirs(analysis_path+'log_files/correct_files', exist_ok=True)
 
 rule all:
     input:
-        analysis_path + f'log_files/correct_files/{start_time}_config_file_correct.txt',
-        analysis_path + f'log_files/correct_files/{start_time}_combine_manifest_sample_sheet_correct.txt',
-        analysis_path + f'log_files/correct_files/{start_time}_download_TCGA_data_correct.txt',
-        analysis_path + f'log_files/correct_files/{start_time}_rename_files_correct.txt'
+        analysis_path + 'log_files/correct_files/'+start_time+'_config_file_correct.txt',
+        analysis_path + 'log_files/correct_files/'+start_time+'_combine_manifest_sample_sheet_correct.txt',
+        analysis_path + 'log_files/correct_files/'+start_time+'_download_TCGA_data_correct.txt',
+        analysis_path + 'log_files/correct_files/'+start_time+'_rename_files_correct.txt'
 
 
 rule CheckConfigFile:
     input:
         conf = 'data/config.yaml'
     output:
-        out_correct_file = analysis_path + f'log_files/correct_files/{start_time}_config_file_correct.txt',
+        out_correct_file = analysis_path + 'log_files/correct_files/'+start_time+'_config_file_correct.txt',
     log:
-        log_file = analysis_path + f'log_files/{start_time}_check_config_file_log.txt'
+        log_file = analysis_path + 'log_files/'+start_time+'_check_config_file_log.txt'
     shell:
         'python3 scripts_TCGA_pipeline/01_check_config_file.py {input.conf} {output.out_correct_file} {log.log_file}'
 
@@ -39,36 +39,37 @@ rule CheckConfigFile:
 rule CombineManifestSampleSheet:
     input:
         conf = 'data/config.yaml',
-        prev_files = analysis_path + f'log_files/correct_files/{start_time}_config_file_correct.txt'
+        prev_files = analysis_path + 'log_files/correct_files/'+start_time+'_config_file_correct.txt'
     output:
-        out_correct_file = analysis_path + f'log_files/correct_files/{start_time}_combine_manifest_sample_sheet_correct.txt',
+        out_correct_file = analysis_path + 'log_files/correct_files/'+start_time+'_combine_manifest_sample_sheet_correct.txt',
     log:
-        log_file = analysis_path + f'log_files/{start_time}_combine_manifest_sample_sheet_log.txt'
+        log_file = analysis_path + 'log_files/'+start_time+'_combine_manifest_sample_sheet_log.txt'
     shell:
-        'PYTHONPATH=scripts_TCGA_pipeline python3 scripts_TCGA_pipeline/02_combine_manifest_sample_sheet.py {input.conf} {output.out_correct_file} {log.log_file}'
+        'PYTHONPATH=scripts_TCGA_pipeline python3 scripts_TCGA_pipeline/02_combine_manifest_sample_sheet.py {input.conf} '\
+        '{output.out_correct_file} {log.log_file}'
 
 
 rule DownloadTCGAData:
     input:
         conf = 'data/config.yaml',
-        prev_files = analysis_path + f'log_files/correct_files/{start_time}_combine_manifest_sample_sheet_correct.txt',
+        prev_files = analysis_path + 'log_files/correct_files/'+start_time+'_combine_manifest_sample_sheet_correct.txt',
+    params:
+        log_path_in = analysis_path+'log_files/'+start_time+'_gdc_client_log',
     output:
-        out_correct_file = analysis_path + f'log_files/correct_files/{start_time}_download_TCGA_data_correct.txt',
+        out_correct_file = analysis_path + 'log_files/correct_files/'+start_time+'_download_TCGA_data_correct.txt',
     log:
-        log_file = analysis_path + f'log_files/{start_time}_download_TCGA_data_log.txt'
+        log_file = analysis_path + 'log_files/'+start_time+'_download_TCGA_data_log.txt'
     shell:
-        'python3 scripts_TCGA_pipeline/03_download_TCGA_data.py {input.conf} '\
-        f'{analysis_path}log_files/{start_time}_gdc_client_log '\
-        '{output.out_correct_file} {log.log_file}'
+        'python3 scripts_TCGA_pipeline/03_download_TCGA_data.py {input.conf} {params.log_path_in} {output.out_correct_file} {log.log_file}'
 
 
 rule RenameFiles:
     input:
         conf = 'data/config.yaml',
-        prev_files = analysis_path + f'log_files/correct_files/{start_time}_download_TCGA_data_correct.txt'
+        prev_files = analysis_path + 'log_files/correct_files/'+start_time+'_download_TCGA_data_correct.txt'
     output:
-        out_correct_file = analysis_path + f'log_files/correct_files/{start_time}_rename_files_correct.txt'
+        out_correct_file = analysis_path + 'log_files/correct_files/'+start_time+'_rename_files_correct.txt'
     log:
-        log_file = analysis_path + f'log_files/{start_time}_rename_files_log.txt'
+        log_file = analysis_path + 'log_files/'+start_time+'_rename_files_log.txt'
     shell:
         'python3 scripts_TCGA_pipeline/04_rename_files.py {input.conf} {output.out_correct_file} {log.log_file}'
