@@ -20,7 +20,7 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 ```
 
 ### 2.2 Quick example
-- To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 6 files of the TCGA database.
+- To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 4 files of the TCGA database.
 - After you downloaded the whole GitHub repository, create a local folder on your computer where the TCGA data should be downloaded.
 - Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
 - Replace the "config.yaml" file in the pipeline's "data" folder with the "config.yaml" file in the "test_example" folder.
