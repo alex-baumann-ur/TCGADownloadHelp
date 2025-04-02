@@ -4,6 +4,8 @@ import yaml
 from datetime import datetime
 import sys
 import time
+import subprocess
+import shlex
 
 log_messages = []
 
@@ -49,6 +51,10 @@ msg1 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+'Files have been 
         f'a documentation of a successful renaming: {file_renaming}')
 print(msg1)
 log_messages.append(msg1)
+
+if config_file['manual_manifest_download'] == False:
+    manifest_file_change_cmd = f"sed -i 's/^manifest_for_download: .*/manifest_for_download: False/' data/config.yaml"
+    subprocess.run(shlex.split(manifest_file_change_cmd))
 
 with open(sys.argv[3], 'w') as o2:
     for msg in log_messages:

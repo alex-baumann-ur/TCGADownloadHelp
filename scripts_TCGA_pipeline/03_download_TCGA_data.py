@@ -27,7 +27,7 @@ def Create_Manifest_Download_List():
         manifest_for_download = False
         error_count += 1
         msg1 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+
-                'Please execute the previous part of the pipeline or input your manifest files for download manually in the data/config.yaml file.')
+                'Please execute the previous part of the pipeline (again) or input your manifest files for download manually in the data/config.yaml file.')
         print(msg1)
         log_messages.append(msg1)
     else:
