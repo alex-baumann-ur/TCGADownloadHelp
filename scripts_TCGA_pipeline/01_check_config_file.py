@@ -75,7 +75,7 @@ else:
                 log_messages.append(msg4)
         
         # if manifest for download is existent
-        manifest_for_download = config_file['manifest_for_download']
+        manifest_for_download = config_file['manual_manifest_download']
 
         if manifest_for_download != False:
             for check_file in manifest_for_download:
