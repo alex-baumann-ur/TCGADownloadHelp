@@ -32,10 +32,15 @@ sample_sheet_filtering:
 #   False: do not use this Jupyter Notebook for the gdc-client
 conda_gdc: First_install
 
-# Specify manifest file for downloading TCGA data
-# Either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests), use list format (put your files in square brackets and comma-separated)
+# Please leave this option on False, as this will be changed with pipeline steps
 # False: use the output of the pipeline
-manifest_for_download: []
+manifest_for_download: False
+
+# Manually specify manifest file for downloading TCGA data, if wanted
+# Either enter a list of manifest file(s) manually (in folder <analysis_path>/sample_sheets/manifests_for_download), use list format (put your files in square brackets and comma-separated)
+# E.g.: [test_gdc_manifest1.txt, test_gdc_manifest2.txt]
+# False: use the output of the pipeline
+manual_manifest_download: False
 
 # Optional TCGA user token for restricted access files
 # Include secured file path with TCGA user token
