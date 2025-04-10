@@ -37,7 +37,7 @@ else:
     # if analysis_path has "/" at the end
     if analysis_path[-1] != '/':
         analysis_path = analysis_path+'/'
-        change_config_cmd = f"sed -i '/^analysis_path: .*/s/$/\//' data/config.yaml"
+        change_config_cmd = f"sed -i -e '/^analysis_path: .*/s/$/\//' data/config.yaml"
         subprocess.run(shlex.split(change_config_cmd))
     # if sample sheet and manifests folders exist
     if not os.path.exists(analysis_path+'sample_sheets/manifests') or not os.path.exists(analysis_path+'sample_sheets/sample_sheets_prior'):
