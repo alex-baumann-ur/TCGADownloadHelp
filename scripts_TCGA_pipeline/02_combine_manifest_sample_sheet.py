@@ -158,7 +158,7 @@ if config_file['manual_manifest_download'] == False:
     manifests_pipeline_files = [m.split('/')[-1] for m in list_manifests_for_download]
     manifests_pipeline = ', '.join(manifests_pipeline_files) # only file names
     
-    manifest_file_change_cmd = f"sed -i 's/^manifest_for_download: .*/manifest_for_download: [{manifests_pipeline}]/' data/config.yaml"
+    manifest_file_change_cmd = f"sed -i -e 's/^manifest_for_download: .*/manifest_for_download: [{manifests_pipeline}]/' data/config.yaml"
     subprocess.run(shlex.split(manifest_file_change_cmd))
 
     msg7 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+
@@ -167,7 +167,7 @@ if config_file['manual_manifest_download'] == False:
     log_messages.append(msg7)
 else:
     manual_manifest_download_files = config_file['manual_manifest_download']
-    manifest_file_change_cmd = f"sed -i 's/^manifest_for_download: .*/manifest_for_download: {manual_manifest_download_files}/' data/config.yaml"
+    manifest_file_change_cmd = f"sed -i -e 's/^manifest_for_download: .*/manifest_for_download: {manual_manifest_download_files}/' data/config.yaml"
     subprocess.run(shlex.split(manifest_file_change_cmd))
 
     msg7 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+
