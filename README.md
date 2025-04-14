@@ -17,7 +17,6 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 - To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 4 files of the TCGA database.
 - After you downloaded the whole GitHub repository, create a local folder on your computer where the TCGA data should be downloaded.
 - Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
-- Replace the "config.yaml" file in the pipeline's "data" folder with the "config.yaml" file in the "test_example" folder.
 - Add the path of your analysis folder in the "config.yaml" file under "analysis_path:". If you are using the Jupyter Notebook, you have to add the analysis path in the first line as well.
 - Activate your TCGAHelper conda environment and run the pipeline (further explained in 2.8).
 - Important: From time to time, the GDC server is overloaded or slow, which might lead to aborted downloads. If that happens, please execute the whole pipeline again.
