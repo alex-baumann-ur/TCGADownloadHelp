@@ -135,4 +135,9 @@ this script changes the suffix to the case id.
 - A Snakemake pipeline can be used to analyze all downloaded data at once (if wanted).
 - The Snakemake pipeline is a template and is not ready to use for your analysis.
 - Please adapt the rules in the [Snakemake file](Snakefile) to use the Snakemake pipeline.
-- 
+- After that, you have to set the "snakemake_sample_analysis" parameter of the [config.yaml](data/config.yaml) file to True.
+- You can run the sample analysis pipeline in the Jupyter Notebook by just running the last cell.
+- If you want to use Snakemake on the command line, you can run the following command:
+```
+snakemake -s Snakefile_sample_analysis --cores <cores>
+```
