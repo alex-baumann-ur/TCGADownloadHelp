@@ -1,0 +1,12 @@
+name: TCGADownloadHelper
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+  - defaults
+dependencies:
+  - gdc-client=2.3
+  - jupyter=1.1.1
+  - pandas=2.2.3
+  - yaml=0.2.5
+  - snakemake=8.25.3

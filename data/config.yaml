@@ -2,39 +2,28 @@
 # Example: /home/user1/Documents/project1/01_tcga_data_analysis_1/
 analysis_path: 
 
-# TCGA study abbreviation included in this 
+# TCGA study abbreviation included in this
 # Example: ['TCGA-LUAD', 'TCGA-LUSC']
-tcga_study: []
+tcga_study: ['TCGA-LUAD']
 
 # TCGA sample (tissue) types to download
-# Example: ['Tumor', 'Tumor, Normal']
-sample_type: []
+# Example: ['Tumor', 'Tumor, Normal', 'Normal']
+sample_type: ['Tumor', 'Tumor, Normal', 'Normal']
 
 # Original (prior) manifest files names (in folder <analysis_path>/sample_sheets/manifests)
 # Use the list format (put your files in square brackets and comma-separated)
 # Example: [2024-06_manifest_2.txt, 2024-05_manifest_1.txt]
-manifests_prior: []
+manifests_prior: [test_gdc_manifest.txt]
 
 # Original (prior) sample sheets names (in folder <analysis_path>/sample_sheets/sample_sheets_prior)
 # Use the list format (put your files in square brackets and comma-separated)
 # Example: [2024-05_sample_sheet_1.tsv, 2024-06_sample_sheet_2.tsv]
-sample_sheets_prior: []
+sample_sheets_prior: [test_gdc_sample_sheet.tsv]
 
 # Sample sheet with case IDs to filter for (in folder <analysis_path>/sample_sheets/sample_sheets_prior).
 # Example: 2024-05_sample_sheet_filtering.tsv
 # If not wanted or needed, put in: False
-sample_sheet_filtering: 
-
-# Conda environment for gdc-client download. Use one of the following options:
-#   First_install: if you want to install the gdc-client as a conda environment. Set to True after first installation. If the installatation should be started again, set to "First_install" again
-#   True: if you have installed the conda environment as gdc_client within this script (automatically set to True after first installation)
-#   <Name for conda environment including the TCGA GDC-Client tool>: if you want to use your own environment
-#   False: do not use this Jupyter Notebook for the gdc-client
-conda_gdc: First_install
-
-# Please leave this option on False, as this will be changed with pipeline steps
-# False: use the output of the pipeline
-manifest_for_download: False
+sample_sheet_filtering: False
 
 # Manually specify manifest file for downloading TCGA data, if wanted
 # Either enter a list of manifest file(s) manually (in folder <analysis_path>/sample_sheets/manifests_for_download), use list format (put your files in square brackets and comma-separated)
@@ -42,27 +31,34 @@ manifest_for_download: False
 # False: use the output of the pipeline
 manual_manifest_download: False
 
+# Specify manifest file for downloading TCGA data
+# Either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests), use list format (put your files in square brackets and comma-separated)
+# False: use the output of the pipeline
+manifest_for_download: [test_gdc_manifest_ready.txt]
+
 # Optional TCGA user token for restricted access files
 # Include secured file path with TCGA user token
 # False: no TCGA user token if none is available or necessary
-tcga_user_token_file: 
+tcga_user_token_file: False
 
 # Methods dictionary for creating analysis folders for TCGA files
 # Adapt the dictionary, if you want to use other folder names or want to add methods (<method_in_file_name>:<method_folder_name>)
 methods_dict: {'nationwidechildrens':'Biospecimen_Clinical', 'absolute_liftover':'Absolute_LiftOver', 'aliquot_ensemble':'Ensemble',
                'arriba':'Arriba', 'ascat2':'ASCAT2', 'gene_level_copy_number.v36':'ASCAT2', 'ascat3':'ASCAT3',
-               'wgs.ASCAT.':'ASCAT_NGS', 'mirbase21':'miRNA_quantification', 'birdseed':'Birdseed', 
-               'BRASS':'BRASS', '.WholeGenome.':'DNA_mapping', '_wxs_gdc_realn.bam':'DNA_mapping', '_wgs_gdc_realn.bam':'DNA_mapping', 
-               'mirna_gdc':'miRNA_mapping', 'CaVEMan':'CaVEMan', 'GenomeWideSNP':'DNAcopy', '_wgs_gdc_realn.cr.igv':'GATK4_CNV', 
+               'wgs.ASCAT.':'ASCAT_NGS', 'mirbase21':'miRNA_quantification', 'birdseed':'Birdseed',
+               'BRASS':'BRASS', '.WholeGenome.':'DNA_mapping', '_wxs_gdc_realn.bam':'DNA_mapping', '_wgs_gdc_realn.bam':'DNA_mapping',
+               'mirna_gdc':'miRNA_mapping', 'CaVEMan':'CaVEMan', 'GenomeWideSNP':'DNAcopy', '_wgs_gdc_realn.cr.igv':'GATK4_CNV',
                'GATK4_CNV', 'gatk4.copy_number_variation':'GATK4_CNV', 'gatk4_mutect2':'GATK4_MuTect2',
-               'somatic_sv':'Manta', 'somatic.SV.bed':'Manta', '.muse.':'MuSE', '.mutect2.':'MuTect2', 
-               'Pindel':'Pindel', '.idat':'Methylation', 'methylation_array':'Methylation', 'rna_seq.genomic':'RNA_mapping', 
-               'rna_seq.transcriptome':'RNA_mapping', 'rna_seq.chimeric':'RNA_mapping', 'star_splice':'STAR_splicing', 
+               'somatic_sv':'Manta', 'somatic.SV.bed':'Manta', '.muse.':'MuSE', '.mutect2.':'MuTect2',
+               'Pindel':'Pindel', '.idat':'Methylation', 'methylation_array':'Methylation', 'rna_seq.genomic':'RNA_mapping',
+               'rna_seq.transcriptome':'RNA_mapping', 'rna_seq.chimeric':'RNA_mapping', 'star_splice':'STAR_splicing',
                'star_gene_counts':'STAR_counts', 'star_fusion':'STAR_fusion', 'svaba':'SvABA', 'VarScan2':'VarScan2'}
 
-### Snakemake analysis pipeline configuration (Snakefile: Snakefile_sample_analysis)
-# Name of the conda environment for Snakemake pipeline
-conda_snakemake: 
+### Snakemake sample analysis pipeline configuration (Snakefile: Snakefile_sample_analysis)
+# If you want to use the Snakemake pipeline for sample analysis, you have to adapt the Snakefile Snakefile_sample_analysis and set this variable to True
+# False: no sample analysis pipeline is connected afterwards
+# True: sample analysis pipeline is connected afterwards
+snakemake_sample_analysis: False
 
 # How many threads to use in the Snakemake pipeline
 snakemake_threads: 4
@@ -70,7 +66,7 @@ snakemake_threads: 4
 # Which analysis methods should be used and analyzed with the Snakemake pipeline
 # Enter a list of analysis methods from the methods dictionary (in square brackets)
 # Example: [STAR_counts, STAR_splicing]
-snakemake_methods: []
+snakemake_methods: [STAR_counts]
 
 # Which case IDs should be analyzed with the Snakemake pipeline
 # True: use the case IDs of the manifest(s) specified in "manifest_for_download"
@@ -79,4 +75,3 @@ snakemake_methods: []
 #     Path_sample: full file path to the file
 #     Folder: folder name of the analysis
 snakemake_caseids: True
-

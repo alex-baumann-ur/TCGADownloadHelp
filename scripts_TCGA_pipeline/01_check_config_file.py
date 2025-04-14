@@ -17,6 +17,9 @@ msg0 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+'##### Check vali
 print(msg0)
 log_messages.append(msg0)
 
+with open('data/config.yaml', 'r') as o:
+    conf_lines = [l.rstrip() for l in o.readlines()]
+
 with open('data/config.yaml', 'r') as streamfile:
     config_file = yaml.load(streamfile, Loader=yaml.FullLoader)
 
@@ -37,8 +40,10 @@ else:
     # if analysis_path has "/" at the end
     if analysis_path[-1] != '/':
         analysis_path = analysis_path+'/'
-        change_config_cmd = f"sed -i -e '/^analysis_path: .*/s/$/\//' data/config.yaml"
-        subprocess.run(shlex.split(change_config_cmd))
+        conf_lines2 = [l+'/\n' if l.startswith('analysis_path') else l+'\n' for l in conf_lines]
+        with open('data/config.yaml', 'w') as w:
+            w.writelines(conf_lines2)
+
     # if sample sheet and manifests folders exist
     if not os.path.exists(analysis_path+'sample_sheets/manifests') or not os.path.exists(analysis_path+'sample_sheets/sample_sheets_prior'):
         error_count += 1

@@ -7,16 +7,10 @@
 
 ## 2. Your input
 ### 2.1. Prerequisites
-- To use this script as a one-touch pipeline with the Jupyter Notebook, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the [Jupyter Notebook](https://anaconda.org/anaconda/jupyter) and the [pandas](https://anaconda.org/anaconda/pandas) package. You can also use the [given Jupyter environment file](envs/jupyter_env.txt) with this command to create a conda environment:
+- To use this TCGADownloadHelper with the Jupyter Notebook or the Snakemake pipeline, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the required packages, which can be found in the environment yaml file [TCGADownloadHelper_env.yaml](envs/TCGADownloadHelper_env.yaml). Use this command to create a matching conda environment:
 
 ```
-conda create --name Jupyter --file envs/jupyter_env.txt
-```
-
-- If you want use this script as a one-touch pipeline with [Snakemake](https://snakemake.readthedocs.io/en/stable/) or to do the further analysis step with the Snakemake_sample_analysis pipeline, you will have to create a conda environment with the Snakemake and pandas package. You can also use the [given Snakemake environment file](envs/snakemake_env.txt) with this command to create a conda environment:
-
-```
-conda create --name Snakemake --file envs/snakemake_env.txt
+conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 ```
 
 ### 2.2 Quick example
@@ -24,8 +18,9 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 - After you downloaded the whole GitHub repository, create a local folder on your computer where the TCGA data should be downloaded.
 - Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
 - Replace the "config.yaml" file in the pipeline's "data" folder with the "config.yaml" file in the "test_example" folder.
-- Add the path of your analysis folder in the "config.yaml" file under "analysis_path:".
-- Activate your Jupyter or Snakemake environment and run the pipeline (further explained in 2.8)
+- Add the path of your analysis folder in the "config.yaml" file under "analysis_path:". If you are using the Jupyter Notebook, you have to add the analysis path in the first line as well.
+- Activate your TCGAHelper conda environment and run the pipeline (further explained in 2.8).
+- Important: From time to time, the GDC server is overloaded or slow, which might lead to aborted downloads. If that happens, please execute the whole pipeline again.
 
 ### 2.3. Filter and select TCGA data
 - Go to: [https://portal.gdc.cancer.gov/analysis_page](https://portal.gdc.cancer.gov/analysis_page)
@@ -65,26 +60,25 @@ conda create --name Snakemake --file envs/snakemake_env.txt
 
 ### 2.7. Adapt the Snakemake sample analysis pipeline
 - This step is optional, as this Snakemake sample analysis pipeline is only a template and is not ready to use for the analysis of your TCGA samples yet.
-- If you have decided what to analyze, you can define the rules in the [Snakefile_sample_analysis](Snakefile_sample_analysis).
+- If you have decided on what to analyze, you can define the rules in the [Snakefile_sample_analysis](Snakefile_sample_analysis).
 - Each rule requires a Python script with the analysis methods or an adapted shell command in the rule.
 - The Python scripts for the analysis are located in the folder [scripts_snakemake](scripts_snakemake).
 
 ### 2.8. Start the pipeline
-- If you have done all previous steps, you can start the TCGADownloadHelp pipeline.
-1. You can activate your conda environment with the installed Jupyter Notebook package to use the Jupyter Notebook.
+- If you have done all previous steps, you can start the TCGADownloadHelp pipeline after activating your TCGAHelper conda environment with the required packages.
 ```
-conda activate <name_of_environment>
+conda activate TCGAHelper
 ```
-- Then, open the Jupyter Notebook ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb), put in your analysis_path and follow the steps for adapting the config.file.
-- After that, either run the script cell by cell or everything at once.
+1. If you want to use the Jupyter Notebook, open Jupyter in a browser by running:
+```
+jupyter notebook
+```
+- Go to the ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) file, put in your analysis_path and follow the steps for adapting the config.file.
+- After that, run the script cell by cell.
 
-2. If you prefer using Snakemake, you can run the [Python scripts](scripts_TCGA_pipeline) in an environment with working Snakemake.
+2. If you prefer using Snakemake, you have to decide on the amount of cores to use. You can run the pipeline in the TCGAHelper environment using the default parameters with:
 ```
-conda activate <name_of_environment>
-```
-- You can run the Snakemake pipeline using the default parameters with:
-```
-snakemake
+snakemake --cores <cores>
 ```
 
 ## 3. Pipeline steps explained
@@ -101,19 +95,17 @@ snakemake
 <img src="figures/tcga_sample_sheet_example.png" style="width:1000px; position: relative; left: 40px">
 
 - This script merges the manifest(s) and the sample sheet.
-- If previous selection of case IDs is wanted, the script filters for specific case IDs of a previous analysis.
+- If previous selection of case IDs is wanted, the script filters for specific case IDs of a previous analysis. To use that option, you have to adapt the [config.yaml](data/config.yaml) file and input a sample sheet under "sample_sheet_filtering" with the sample IDs you want to use.
 - Creates adapted filtered manifest file for gdc-client download.
 
 ### 3.2. Download TCGA data via a manifest document and the GDC-client tool
-- The script creates a new conda environment called "gdc_client" and downloads the gdc-client tool. If you have already installed the gdc-client in a separete conda environment, you can specify that in the configuration file.
-- The script downloads the TCGA data from manifest(s) specified in previous steps and/or the configuration file via the gdc-client.
-- The files from the manifest are downloaded into the following folder: analysis_path + '00_raw_data'
-- Download TCGA data via the gdc-client tool.
-- Optional: for restricted access files, you need an access token.
-
+- The script downloads the TCGA data from manifest(s) specified in previous steps and/or the configuration file via the gdc-client tool, which is listed in the conda environment yaml file. The following command is used within the pipeline:
 ```
 gdc-client download -m manifest.txt (-t user-token.txt)
 ```
+- The files from the manifest are downloaded into the following folder: analysis_path + '00_raw_data'
+- Optional: for restricted access files, you need an access token, which can be added in the [config.yaml](data/config.yaml) file under "tcga_user_token_file".
+
 
 ### 3.3. Rename the downloaded files as case_id.file_suffix
 - The filename consists of a suffix of 36 different characters as a unique id and is saved in a separate folder with another unique id of 36 characters. This is an example:
@@ -143,4 +135,5 @@ this script changes the suffix to the case id.
 ### 3.4. Analyze files
 - A Snakemake pipeline can be used to analyze all downloaded data at once (if wanted).
 - The Snakemake pipeline is a template and is not ready to use for your analysis.
-- Please adapt the rules in the [Snakemake file](Snakefile) to use Snakemake.
+- Please adapt the rules in the [Snakemake file](Snakefile) to use the Snakemake pipeline.
+- 

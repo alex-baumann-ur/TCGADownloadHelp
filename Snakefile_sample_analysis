@@ -17,8 +17,7 @@ METHODS_LIST = conf_yaml['snakemake_methods']
 def Prepare_Samples_Lists():
     if snakemake_caseids == True:
         manifest_list = conf_yaml['manifest_for_download']
-        manifests = [pd.read_table(analysis_path+'sample_sheets/manifests_merged_sample_sheet/'+i.rsplit('_ready.',1)[0]+'_merged_sample_sheet.txt') 
-                    for i in manifest_list]
+        manifests = [pd.read_table(analysis_path+'sample_sheets/manifests_merged_sample_sheet/'+i.rsplit('_ready.',1)[0]+'_merged_sample_sheet.txt') for i in manifest_list]
         sample_sheet = pd.concat(manifests)
     else:
         sample_sheet = pd.read_table(snakemake_caseids)
@@ -47,7 +46,7 @@ os.makedirs(analysis_path+'03_results_combined', exist_ok=True)
 rule all:
     input:
         expand(analysis_path+'02_results_raw/'+METHODS_LIST[0]+'/{sample}_'+METHODS_LIST[0]+'_out.txt', sample=SAMPLES_LIST[0]),
-        expand(analysis_path+'02_results_raw/'+METHODS_LIST[1]+'/{sample}_'+METHODS_LIST[1]+'_out.txt', sample=SAMPLES_LIST[1]),
+        #expand(analysis_path+'02_results_raw/'+METHODS_LIST[1]+'/{sample}_'+METHODS_LIST[1]+'_out.txt', sample=SAMPLES_LIST[1]),
         #expand(analysis_path+'02_results_raw/'+METHODS_LIST[2]+'/{sample}_'+METHODS_LIST[2]+'_out.txt', sample=SAMPLES_LIST[2]),
 
 

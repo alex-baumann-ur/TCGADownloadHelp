@@ -150,6 +150,9 @@ else:
 
 # manifests for download
 # read in configuration file again because it was changed the prior step
+with open('data/config.yaml', 'r') as o:
+    conf_lines = [l.rstrip() for l in o.readlines()]
+
 with open(sys.argv[1], 'r') as streamfile:
     config_file = yaml.load(streamfile, Loader=yaml.FullLoader)
 
@@ -158,8 +161,9 @@ if config_file['manual_manifest_download'] == False:
     manifests_pipeline_files = [m.split('/')[-1] for m in list_manifests_for_download]
     manifests_pipeline = ', '.join(manifests_pipeline_files) # only file names
     
-    manifest_file_change_cmd = f"sed -i -e 's/^manifest_for_download: .*/manifest_for_download: [{manifests_pipeline}]/' data/config.yaml"
-    subprocess.run(shlex.split(manifest_file_change_cmd))
+    conf_lines2 = [f'manifest_for_download: [{manifests_pipeline}]\n' if l.startswith('manifest_for_download') else l+'\n' for l in conf_lines]
+    with open('data/config.yaml', 'w') as w:
+        w.writelines(conf_lines2)
 
     msg7 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+
                 'Config file has been updated with new manifest files to download.')
@@ -167,8 +171,10 @@ if config_file['manual_manifest_download'] == False:
     log_messages.append(msg7)
 else:
     manual_manifest_download_files = config_file['manual_manifest_download']
-    manifest_file_change_cmd = f"sed -i -e 's/^manifest_for_download: .*/manifest_for_download: {manual_manifest_download_files}/' data/config.yaml"
-    subprocess.run(shlex.split(manifest_file_change_cmd))
+
+    conf_lines2 = [f'manifest_for_download: {manual_manifest_download_files}\n' if l.startswith('manifest_for_download') else l+'\n' for l in conf_lines]
+    with open('data/config.yaml', 'w') as w:
+        w.writelines(conf_lines2)
 
     msg7 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+
                 'Config file has been updated with new manifest files to download.')

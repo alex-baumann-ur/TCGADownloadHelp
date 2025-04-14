@@ -14,6 +14,9 @@ msg0 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+'##### Rename fil
 print(msg0)
 log_messages.append(msg0)
 
+# with open('data/config.yaml', 'r') as o:
+#     conf_lines = [l.rstrip() for l in o.readlines()]
+
 with open(sys.argv[1], 'r') as streamfile:
     config_file = yaml.load(streamfile, Loader=yaml.FullLoader)
 
@@ -52,9 +55,10 @@ msg1 = (time.strftime('%Y-%m-%d %H:%M:%S: ', time.localtime())+'Files have been 
 print(msg1)
 log_messages.append(msg1)
 
-if config_file['manual_manifest_download'] == False:
-    manifest_file_change_cmd = f"sed -i 's/^manifest_for_download: .*/manifest_for_download: False/' data/config.yaml"
-    subprocess.run(shlex.split(manifest_file_change_cmd))
+# if config_file['manual_manifest_download'] == False:
+#     conf_lines2 = [f'manifest_for_download: False\n' if l.startswith('manifest_for_download') else l+'\n' for l in conf_lines]
+#     with open('data/config.yaml', 'w') as w:
+#         w.writelines(conf_lines2)
 
 with open(sys.argv[3], 'w') as o2:
     for msg in log_messages:
