@@ -30,7 +30,7 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 - Possibility 2) Snakemake
   - Run the pipeline with:
     ```
-    snakemake --cores <cores>
+    snakemake --cores 4
     ```
 - Important: From time to time, the GDC server is overloaded or slow, which might lead to aborted downloads. If that happens, please execute the whole pipeline again.
 
