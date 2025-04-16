@@ -15,7 +15,7 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 
 ### 2.2 Quick example
 - To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 4 files of the TCGA database.
-- After you downloaded the whole GitHub repository, set the "test_example" folder as your analysis folder in the "config.yaml" file under "analysis_path:". If you are using the Jupyter Notebook, you have to add the analysis path in the first cell as well.
+- After you downloaded the whole GitHub repository, set the full "test_example" path as your analysis folder in the "config.yaml" file under "analysis_path:".
 - Activate your TCGAHelper conda environment:
   ```
   conda activate TCGAHelper
@@ -25,6 +25,7 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
     ```
     jupyter notebook
     ```
+  - Add your full analysis path in the first cell.
   - Run the script cell by cell.
 - Possibility 2) Snakemake
   - Run the pipeline with:
