@@ -15,10 +15,22 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 
 ### 2.2 Quick example
 - To test out the pipeline and its functionality very quickly, there is a "test_example" folder including a test manifest file and sample sheet for 4 files of the TCGA database.
-- After you downloaded the whole GitHub repository, create a local folder on your computer where the TCGA data should be downloaded.
-- Copy the "sample_sheets" subfolder of the "test_example" folder to your analysis folder.
-- Add the path of your analysis folder in the "config.yaml" file under "analysis_path:". If you are using the Jupyter Notebook, you have to add the analysis path in the first line as well.
-- Activate your TCGAHelper conda environment and run the pipeline (further explained in 2.8).
+- After you downloaded the whole GitHub repository, set the "test_example" folder as your analysis folder in the "config.yaml" file under "analysis_path:". If you are using the Jupyter Notebook, you have to add the analysis path in the first cell as well.
+- Activate your TCGAHelper conda environment:
+  ```
+  conda activate TCGAHelper
+  ```
+- Possibility 1) Jupyter Notebook
+  - Open Jupyter in a browser by running:
+    ```
+    jupyter notebook
+    ```
+  - Run the script cell by cell.
+- Possibility 2) Snakemake
+  - Run the pipeline with:
+    ```
+    snakemake --cores <cores>
+    ```
 - Important: From time to time, the GDC server is overloaded or slow, which might lead to aborted downloads. If that happens, please execute the whole pipeline again.
 
 ### 2.3. Filter and select TCGA data
@@ -68,17 +80,19 @@ conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 ```
 conda activate TCGAHelper
 ```
-1. If you want to use the Jupyter Notebook, open Jupyter in a browser by running:
-```
-jupyter notebook
-```
-- Go to the ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) file, put in your analysis_path and follow the steps for adapting the config.file.
-- After that, run the script cell by cell.
+- Possibility 1) Jupyter Notebook
+  - If you want to use the Jupyter Notebook, open Jupyter in a browser by running:
+  ```
+  jupyter notebook
+  ```
+  - Go to the ["TCGA_steps_code.ipynb"](TCGA_steps_code.ipynb) file, put in your analysis_path and follow the steps for adapting the config.file.
+  - After that, run the script cell by cell.
 
-2. If you prefer using Snakemake, you have to decide on the amount of cores to use. You can run the pipeline in the TCGAHelper environment using the default parameters with:
-```
-snakemake --cores <cores>
-```
+- Possibility 2) Snakemake
+  - If you prefer using Snakemake, you have to decide on the amount of cores to use. You can run the pipeline in the TCGAHelper environment using the default parameters with:
+  ```
+  snakemake --cores <cores>
+  ```
 
 ## 3. Pipeline steps explained
 ### 3.1. Check validity of configuration file entries
