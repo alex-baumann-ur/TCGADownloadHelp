@@ -34,7 +34,7 @@ manual_manifest_download: False
 # Specify manifest file for downloading TCGA data
 # Either enter a list of manifest files manually (in folder <analysis_path>/sample_sheets/manifests), use list format (put your files in square brackets and comma-separated)
 # False: use the output of the pipeline
-manifest_for_download: [test_gdc_manifest_ready.txt]
+manifest_for_download: False
 
 # Optional TCGA user token for restricted access files
 # Include secured file path with TCGA user token
