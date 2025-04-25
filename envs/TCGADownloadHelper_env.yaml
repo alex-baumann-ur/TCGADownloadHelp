@@ -1,4 +1,4 @@
-name: TCGADownloadHelper
+name: TCGAHelper
 channels:
   - conda-forge
   - bioconda
