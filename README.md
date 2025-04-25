@@ -10,7 +10,7 @@
 - To use this TCGADownloadHelper with the Jupyter Notebook or the Snakemake pipeline, you have to [create a conda environment](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html) with the required packages, which can be found in the environment yaml file [TCGAHelper_env.yaml](envs/TCGAHelper_env.yaml). Use this command to create a matching conda environment:
 
 ```
-conda env create --name TCGAHelper -f envs/TCGAHelper_env.yaml
+conda env create --name TCGAHelper -f envs/TCGADownloadHelper_env.yaml
 ```
 
 ### 2.2 Quick example
